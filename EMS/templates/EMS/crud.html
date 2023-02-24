@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>  
+
+    
+      body {background-color:bisque;
+         }
+         input{width:500px;
+        height:35px;}
+        table{
+         border-radius:8px;
+         border-collapse:no-collapse;
+         padding:10px;
+      
+         }
+   
+         td,input{
+           
+            border-radius:8px;
+   }
+    
+   .tbl1{height:400px;
+      background-color:orchid;
+      color:blue
+   }
+
+   
+   h1,tr{font-style:italic;
+   font-weight:bold;
+}
+
+   button{background-color:grey;
+   color:white;
+   border:2px solid brown;
+   border-radius:8px;
+   width:80px;}
+  .div1{float:left}
+  .div2{
+   float:right}
+   a{font-weight:bolder}
+    </style>
+   
+</head>
+<body>
+   <div class="main">
+   <form method="POST">
+    {% csrf_token %}
+   <div class="div1">
+    <h1 style="color:cornflowerblue">Student Management System</h1>
+    <table  class="tbl1">
+
+      <tr>
+         <td><label>Enter id:</label></td> 
+         <td colspan="4"><input type="text" name="i1" placeholder="enter your Id" value="{{stu.id}}"></td> 
+      </tr>
+        <tr >
+   <td><label>Enter name:</label></td> 
+   <td colspan="4"><input type="text" name="t1" placeholder="enter your name"  value="{{stu.name}}"></td> 
+</tr>
+
+<tr>
+    <td> <label>Enter age:</label></td> 
+    <td colspan="4"><input type="number" name="agee"  placeholder="enter your age" value="{{stu.age}}"></td> 
+ </tr>
+
+ 
+ 
+
+ <tr >
+    <td><label>Enter Mobileno:</label></td> 
+    <td colspan="4"><input type="text" name="m1" placeholder="enter your mobileno" value="{{stu.mobileno}}"></td> 
+ </tr>
+
+ <tr>
+    <td><label>Enter city</label></td> 
+    <td colspan="4"><input type="text" name="city" placeholder="enter your city" value="{{stu.city}}"></td> 
+ </tr>
+
+<tr ><td><button type="submit" name="btn_add">Add</button></td>
+   <td><button type="submit" name="btn_search">Search</td>
+<td><button type="submit" name="btn_modify">Update</td>
+   <td><button type="submit"  name="btn_delete">Delete</td>
+<td><button type="submit" name="btn_show">Show All Employee</td></tr>
+</table>
+
+
+<table border="3" style="background-color:pink; color:brown">
+   <h1 style="color:blueviolet"><i>SHOW ALL EMPLOYEE</i></h1>
+   <tr style="color:orangered">
+      <th>S.No</th><th>Name</th><th>Age</th><th>Mobile No</th><th>City</th>
+   </tr>
+   {% for e in alldet %}
+
+   <tr>
+      <td>{{forloop.counter}}</td><td>{{e.name}}</td><td>{{e.age}}</td><td>{{e.mobileno}}</td><td>{{e.city}}</td>
+   </tr>
+   
+   {% endfor %}
+</table>
+<a href="{% url 'course' %}">GO TO STUDENT-WISE COURSE DETAIL PAGE</a><br/><br/>
+<a href="{% url 'payment' %}">GO TO STUDENT-WISE PAYMENT DETAIL PAGE</a>
+</div>
+
+
+
+
+
+<div class="div2">{% block body %}{% endblock body %}</div>
+</body>
+</form>
+</div>
+</html>

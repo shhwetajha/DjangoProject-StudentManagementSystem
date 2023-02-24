@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+.linkdiv{position:relative;
+top: 260px;
+font-weight:bolder;}</style>
+</head>
+<body>
+    {% extends 'EMS/crud.html' %}
+    {% block body%}
+   
+    <form method="POST">
+        {% csrf_token %}
+        <h1>COURSE WISE STUDENT DETAILS</h1>
+   <label>Select courses:</label>
+  <select name="slc">{% for course in allc %}
+   {% if course.id == cidd %}
+   <option value="{{course.id}}" selected>{{course.name}}</option>
+   {% else %}
+   <option value="{{course.id}}">
+       {{course.name}}
+   </option>
+   {% endif %}
+   {% endfor %}
+  </select>
+  <br/>
+  <br/>
+  <button type="submit">Show student</button>
+  <h1>We have following student of {{cname}}</h1>
+  <table border="2" style="Background-Color:pink">
+   <tr>
+       <th>S.NO</th>
+       <th>NAME</th>
+       <th>MOBILE NO.</th>
+       <th>CREATED DATE</th>
+   </tr>
+   {% for stu in studet %}
+
+   <tr>
+       <td>{{stu.name}}</td>
+       <td>{{stu.age}}</td>
+       <td>{{stu.mobileno}}</td>
+       <td>{{stu.created_date}}</td>
+   </tr>
+   {% empty %}
+   <tr>
+       <th colspan="4"> NO STUDENT FOUND!!!</th>
+   </tr>
+   {% endfor %}
+  
+</table>
+<div class="linkdiv"><a href="{% url 'add' %}">GO TO HOME PAGE</a></div>
+</form>
+</body>
+
+</html>
+{% endblock body%}
+   

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>.divlink{position:relative;
+        top: 430px;
+        font-weight:bolder;}</style>
+</head>
+<body>
+    {% extends 'EMS/crud.html' %}
+    {% block body %} <form method="POST">
+        {% csrf_token %}
+
+   
+    <h1>STUDENT WISE PAYMENT DETAILS</h1>
+    <div>
+    <label>Enter student id:</label>
+    <input type="text" name="ptext"></div>
+    <button type="submit" name="pbtn" style="color:brown; width:190px;">Show payment details</button>
+
+    <table border="2" style="background-color:yellow">
+
+        <tr>
+            <th>S.NO</th>
+            <th>NAME</th>
+            <th>AMOUNT </th>
+            <th>PAYMENT_MODE</th>
+            <th>PAYMENT_DATE</th>
+        </tr>
+        {% for e in allp %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{stu.name}}</td>
+            <td>{{e.amount}}</td>
+            <td>{{e.payment_mode}}</td>
+            <td>{{e.payment_date}}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <th colspan="5" style="color:red">{{msg}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="divlink"><a href="{% url 'add' %}">GO TO HOME PAGE</a></div>
+</form>{% endblock body%}
+   
+</body>
+</html>
